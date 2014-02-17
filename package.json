@@ -1,0 +1,20 @@
+{
+  "name": "private_auth_start",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "go": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "jade": "*",
+    "mongojs": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "connect-flash": "*"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
+}
