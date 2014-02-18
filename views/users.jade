@@ -6,23 +6,24 @@ block content
 	div(id="flash")= flash
 
 	div(id="users")
-		table
-			th Username
-			th Update Password
-			th Active
 			
-			each user in users
-				tr(class="user-row")
-					form(action="/user/#{user.username}" method="post")
-						td
-							label= user.username 
-							input(type="hidden" name="username" value="#{user.username}")
-						td
-							input(type="text" name="password")
-						td
-							if (user.pending === true)
-								input(type="checkbox" name="active")
-							else
-								input(type="checkbox" name="active" checked)
-						td
-							input(type="submit" value="Update")
+		form(action="/user/updateUsers" method="post")
+			table
+				th Username
+				th Update Password
+				th Active
+
+					each user, i in users
+						tr(class="user-row")
+								td
+									label= user.username 
+									input(type="hidden" name=user.username + "[username]" value="#{user.username}")
+								td
+									input(type="text" name=user.username + "[password]")
+								td
+									if (user.pending === true)
+										input(type="checkbox" name=user.username + "[active]")
+									else
+										input(type="checkbox" name=user.username + "[active]" checked)
+				
+			input(type="submit" value="Update")

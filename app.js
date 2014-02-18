@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -29,7 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(express.session({ secret: 'hello githubbers' }));
+app.use(express.session({
+    secret: 'hello githubbers'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -38,31 +39,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
 app.get('/', login.login);
 
 app.get('/login/signup', login.signup);
 app.post('/login/signup', passport.authenticate('local-signup', {
-	successRedirect: '/pending',
-	failureRedirect: '/signup',
-	failureFlash: true
+    successRedirect: '/login/pending',
+    failureRedirect: '/login/signup',
+    failureFlash: true
 }));
 
 app.get('/login', login.login);
 app.post('/login', passport.authenticate('local-login', {
-	successRedirect: '/users',
-	failureRedirect: '/login',
-	failureFlash: true
+    successRedirect: '/users',
+    failureRedirect: '/login',
+    failureFlash: true
 }));
 
 app.get('/login/pending', login.pending);
 app.get('/login/success', login.success);
 
 app.get('/users', user.list);
+app.post('/user/updateUsers', user.updateUsers);
 app.post('/user/:username', user.update);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'));
 });
