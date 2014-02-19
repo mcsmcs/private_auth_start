@@ -2,6 +2,10 @@ var mongojs = require('mongojs');
 var users = mongojs.connect('auth_db').collection('users');
 var bcrypt = require('bcrypt-nodejs');
 
+
+/*
+ *	Get a list of all users
+ */
 exports.list = function(req, res){
 	  
 	  // Make sure user is logged in
@@ -12,6 +16,10 @@ exports.list = function(req, res){
 	  });
 }
 
+
+/*
+ *	Update a single user
+ */
 exports.update = function(req, res){
 
 	//console.log(req.body);
@@ -40,6 +48,10 @@ exports.update = function(req, res){
 	
 }
 
+
+/*
+ *	Update multiple users in a single form
+ */
 exports.updateUsers = function(req, res){
 	console.log(req.body);
 

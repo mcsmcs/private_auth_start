@@ -1,8 +1,43 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 10px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+}
+
+#sidenav {
+	float: left;
+	width: 100px;
+	height: 100%;
+	margin-right: 20px;
+}
+
+#content {
+	float: left;
+}
+
+
+/*************************
+ * Login Pages Specific
+ *************************/
+#login-users table {
+	border-collapse: collapse;
+}
+
+#login-users th {
+	padding: 10px 15px;
+	border-bottom: solid 1px #aaa;
+	text-align: left;
+	background-color: #ddd;
+}
+
+#login-users td {
+	padding: 5px 10px;
+	border-bottom: solid 1px #eee;
+}
+
+.login-active {
+	text-align: center;
 }

@@ -1,29 +1,30 @@
 extends layout
 
 block content
-	h1= Users
+	div(id="content")
+		h1 Users
 
-	div(id="flash")= flash
+		div(id="flash")= flash
 
-	div(id="users")
-			
-		form(action="/user/updateUsers" method="post")
-			table
-				th Username
-				th Update Password
-				th Active
-
-					each user, i in users
-						tr(class="user-row")
-								td
-									label= user.username 
-									input(type="hidden" name=user.username + "[username]" value="#{user.username}")
-								td
-									input(type="text" name=user.username + "[password]")
-								td
-									if (user.pending === true)
-										input(type="checkbox" name=user.username + "[active]")
-									else
-										input(type="checkbox" name=user.username + "[active]" checked)
+		div(id="login-users")
 				
-			input(type="submit" value="Update")
+			form(action="/user/updateUsers" method="post")
+				table
+					th Username
+					th Update Password
+					th Active
+
+						each user, i in users
+							tr(class="login-row")
+									td
+										label(class="login-username")= user.username 
+										input(type="hidden" name=user.username + "[username]" value="#{user.username}")
+									td
+										input(type="text" name=user.username + "[password]" class="login-password")
+									td
+										if (user.pending === true)
+											input(type="checkbox" name=user.username + "[active]" class="login-active")
+										else
+											input(type="checkbox" name=user.username + "[active]" class="login-active" checked)
+					
+				input(type="submit" value="Update")
