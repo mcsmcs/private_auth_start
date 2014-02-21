@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt-nodejs');
  */
 exports.list = function(req, res){
 	  
-	users.find(function(err, docs){
+	users.find().sort({username:1}, function(err, docs){
 		res.render('users', { currentUser: req.user, users: docs });	
 	});
 }
