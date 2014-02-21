@@ -56,7 +56,7 @@ exports.updateUsers = function(req, res){
 			if(err){ req.flash('error', err); }
 			if(!user){ req.flash('error', 'User not found'); }
 			
-			if(req.body[user.username].active === 'on'){
+			if(req.body[user.username].active === 'on' || req.user.username === req.body[user.username]) {
 				users.update({username:user.username},{$set: {pending:false}});
 			} else {
 				users.update({username:user.username},{$set: {pending:true}});

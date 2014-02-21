@@ -25,12 +25,14 @@ block content
 									input(id="password" type="text" name=user.username + "[password]" class="login-password")
 								
 								td(class="login-active")
-									if (currentUser.username !== user.username)
+									if (currentUser.username == user.username)
+										input(type="hidden" name=user.username + "[active]" value="on")
+									else
 										if (user.pending === true)
 											input(type="checkbox" name=user.username + "[active]")
-										else
+										else 
 											input(type="checkbox" name=user.username + "[active]" checked)
-								
+
 								td(class="login-delete")
 									if (currentUser.username !== user.username)
 										a(href="user/delete/" + user.username) Delete
