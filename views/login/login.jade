@@ -2,18 +2,22 @@ extends ../layout
 
 block content
 	div(id="content")
-		h1 Log In!
+		div(id="login-login")
 
+			h1 Login
 
-		form(action="/login" method="post")
-			div
+			form(id="login-form" action="/login" method="post")
+
 				label Username
-				input(type="text" name="username")
-			div
+				br
+				input(id="username" type="text" name="username")
+				br
 				label Password
-				input(type="password" name="password")
-			div
-				input(type="submit" value="Log In!")
-				a(href="/login/signup") Or Sign Up!
-		
-		div(id="flash")= flash
+				br
+				input(id="password" type="password" name="password")
+
+				div(id="lower")
+					input(type="submit" value="Login")
+					a(href="/login/signup") Or Sign Up
+			
+			div(id="flash")= flash

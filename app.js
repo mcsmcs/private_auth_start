@@ -10,7 +10,6 @@ var http = require('http');
 var path = require('path');
 var flash = require('connect-flash');
 var mongojs = require('mongojs');
-
 var bcrypt = require('bcrypt-nodejs');
 var passport = require('passport');
 var app = express();
@@ -40,8 +39,16 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
+
+/***************************
+*	Root route
+*/
 app.get('/', login.login);
 
+
+/***************************
+*	Login routing
+*/
 app.get('/login/signup', login.signup);
 app.post('/login/signup', passport.authenticate('local-signup', {
     successRedirect: '/login/pending',
@@ -60,6 +67,10 @@ app.get('/login/pending', login.pending);
 app.get('/login/success', login.success);
 app.get('/login/logout', login.logout);
 
+
+/***************************
+*	User management routing
+*/
 app.get('/users', user.list);
 app.post('/user/updateUsers', user.updateUsers);
 app.post('/user/:username', user.update);
