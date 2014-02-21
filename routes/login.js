@@ -15,3 +15,8 @@ exports.pending = function(req, res){
 exports.success = function(req, res){
 	res.render('login/success');
 }
+
+exports.logout = function(req, res){
+	req.logout();
+	res.redirect('/');
+}

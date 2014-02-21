@@ -28,9 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(express.session({
-    secret: 'hello githubbers'
-}));
+app.use(express.session({ secret: 'hello githubbers' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -60,6 +58,7 @@ app.post('/login', passport.authenticate('local-login', {
 
 app.get('/login/pending', login.pending);
 app.get('/login/success', login.success);
+app.get('/login/logout', login.logout);
 
 app.get('/users', user.list);
 app.post('/user/updateUsers', user.updateUsers);
