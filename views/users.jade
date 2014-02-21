@@ -13,18 +13,27 @@ block content
 					th Username
 					th Update Password
 					th Active
+					th Delete
 
-						each user, i in users
-							tr(class="login-row")
-									td
-										label(class="login-username")= user.username 
-										input(type="hidden" name=user.username + "[username]" value="#{user.username}")
-									td
-										input(type="text" name=user.username + "[password]" class="login-password")
-									td
+					each user in users
+						tr(class="login-row")
+								td
+									label(class="login-username")= user.username 
+									input(type="hidden" name=user.username + "[username]" value="#{user.username}")
+								
+								td
+									input(id="password" type="text" name=user.username + "[password]" class="login-password")
+								
+								td(class="login-active")
+									if (currentUser.username !== user.username)
 										if (user.pending === true)
-											input(type="checkbox" name=user.username + "[active]" class="login-active")
+											input(type="checkbox" name=user.username + "[active]")
 										else
-											input(type="checkbox" name=user.username + "[active]" class="login-active" checked)
-					
-				input(type="submit" value="Update")
+											input(type="checkbox" name=user.username + "[active]" checked)
+								
+								td(class="login-delete")
+									if (currentUser.username !== user.username)
+										a(href="user/delete/" + user.username) Delete
+				
+				div(id="lower")
+					input(type="submit" value="Update")

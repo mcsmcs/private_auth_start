@@ -74,7 +74,9 @@ app.get('/login/logout', login.logout);
 */
 app.get('/users', isAuthenticated, user.list);
 app.post('/user/updateUsers', isAuthenticated, user.updateUsers);
-app.post('/user/:username', isAuthenticated, user.update);
+app.get('/user/delete/:username', isAuthenticated, user.delete);
+//app.post('/user/:username', isAuthenticated, user.update);
+
 
 
 http.createServer(app).listen(app.get('port'), function() {

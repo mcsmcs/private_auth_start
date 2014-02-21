@@ -9,7 +9,7 @@ var bcrypt = require('bcrypt-nodejs');
 exports.list = function(req, res){
 	  
 	users.find(function(err, docs){
-		res.render('users', { users: docs });	
+		res.render('users', { currentUser: req.user, users: docs });	
 	});
 }
 
@@ -57,9 +57,7 @@ exports.updateUsers = function(req, res){
 			if(!user){ req.flash('error', 'User not found'); }
 			
 			if(req.body[user.username].active === 'on'){
-				users.update({username:user.username},{$set: {pending:false}}, function(err, res){
-					console.log(res + "  " + username);
-				});
+				users.update({username:user.username},{$set: {pending:false}});
 			} else {
 				users.update({username:user.username},{$set: {pending:true}});
 			}
@@ -76,4 +74,17 @@ exports.updateUsers = function(req, res){
 	}
 
 	res.redirect('/users');
+}
+
+
+/*
+ *	Delete a single user
+ */
+exports.delete = function(req, res){
+
+	users.remove({username:req.params.username}, function(err){
+		if (err){ req.flash('error', err); res.redirect('/users'); }
+
+		res.redirect('/users');
+	});
 }
