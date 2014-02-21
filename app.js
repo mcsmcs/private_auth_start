@@ -6,6 +6,7 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var login = require('./routes/login');
+var isAuthenticated = login.isAuthenticated;
 var http = require('http');
 var path = require('path');
 var flash = require('connect-flash');
@@ -71,9 +72,9 @@ app.get('/login/logout', login.logout);
 /***************************
 *	User management routing
 */
-app.get('/users', user.list);
-app.post('/user/updateUsers', user.updateUsers);
-app.post('/user/:username', user.update);
+app.get('/users', isAuthenticated, user.list);
+app.post('/user/updateUsers', isAuthenticated, user.updateUsers);
+app.post('/user/:username', isAuthenticated, user.update);
 
 
 http.createServer(app).listen(app.get('port'), function() {

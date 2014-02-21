@@ -8,12 +8,9 @@ var bcrypt = require('bcrypt-nodejs');
  */
 exports.list = function(req, res){
 	  
-	  // Make sure user is logged in
-	  if (!req.user){ res.redirect('/'); }
-
-	  users.find(function(err, docs){
-	  	res.render('users', { users: docs });	
-	  });
+	users.find(function(err, docs){
+		res.render('users', { users: docs });	
+	});
 }
 
 
@@ -21,8 +18,6 @@ exports.list = function(req, res){
  *	Update a single user
  */
 exports.update = function(req, res){
-
-	//console.log(req.body);
 
 	users.findOne({username:req.body.username}, function(err, user){
 
@@ -53,7 +48,6 @@ exports.update = function(req, res){
  *	Update multiple users in a single form
  */
 exports.updateUsers = function(req, res){
-	console.log(req.body);
 
 	for (username in req.body){
 
