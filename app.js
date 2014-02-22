@@ -4,7 +4,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var login = require('./routes/login');
 var isAuthenticated = login.isAuthenticated;
 var http = require('http');
@@ -81,10 +80,10 @@ app.get('/login/logout', login.logout);
 /***************************
 *	User management routing
 */
-app.get('/users', isAuthenticated, user.list);
-app.post('/user/updateUsers', isAuthenticated, user.updateUsers);
-app.get('/user/delete/:username', isAuthenticated, user.delete);
-//app.post('/user/:username', isAuthenticated, user.update);
+app.get('/users', isAuthenticated, login.userList);
+app.post('/user/updateUsers', isAuthenticated, login.updateUsers);
+app.get('/user/delete/:username', isAuthenticated, login.deleteUser);
+//app.post('/user/:username', isAuthenticated, login.updateUser);
 
 
 

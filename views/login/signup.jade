@@ -5,10 +5,7 @@ block content
 		div(id="login-login")
 			h1 Sign Up
 
-			if (adminsetup == true)
-				form(id="login-form" action="/login/adminsetup" method="post")
-			else
-				form(id="login-form" action="/login/signup" method="post")
+			form(id="login-form" action="/login/signup" method="post")
 
 				label Username
 				br
