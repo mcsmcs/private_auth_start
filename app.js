@@ -50,6 +50,15 @@ app.get('/', login.login);
 /***************************
 *	Login routing
 */
+
+// Remove these two after setting up an initial admin
+// app.get('/login/setup', login.adminsetup);
+// app.post('/login/setup', passport.authenticate('local-adminsetup', {
+// 	successRedirect: '/',
+// 	failureRedirect: '/login/setup',
+// 	failureFlash: true
+// }));
+
 app.get('/login/signup', login.signup);
 app.post('/login/signup', passport.authenticate('local-signup', {
     successRedirect: '/login/pending',

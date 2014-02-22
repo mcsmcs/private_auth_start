@@ -5,17 +5,21 @@ block content
 		div(id="login-login")
 			h1 Sign Up
 
-			form(id="login-form" action="/login/signup" method="post")
-					label Username
-					br
-					input(id="username" type="text" name="username")
-					br
-					label Password
-					br
-					input(id="password" type="password" name="password")
-					br
-					div(id="lower")
-						input(type="submit" value="Sign Up!")
+			if (adminsetup == true)
+				form(id="login-form" action="/login/adminsetup" method="post")
+			else
+				form(id="login-form" action="/login/signup" method="post")
+
+				label Username
+				br
+				input(id="username" type="text" name="username")
+				br
+				label Password
+				br
+				input(id="password" type="password" name="password")
+				br
+				div(id="lower")
+					input(type="submit" value="Sign Up!")
 
 			div(id="flash")= flash
 

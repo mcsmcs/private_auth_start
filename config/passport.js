@@ -90,4 +90,39 @@ module.exports = function(passport){
 		});	
 	})); // End local-login Strategy
 
+
+	// Admin Setup Logic
+	passport.use('local-adminsetup', new LocalStrategy({
+		usernameField: 'username',
+		passwordField: 'password'
+	},
+	function(username, password, done){
+		
+		users = db.collection('users');
+
+		users.findOne({username: username}, function(err, user){
+
+			// Catastrophic error (e.g. database unavailable)
+			if(err){ return done(err); }
+
+			// The username is already taken
+			if(user){ 
+
+				return done(null, false, { message: 'That username already exists.' });
+
+			} else {
+			
+				// Create a new user, mark as pending approval
+				bcrypt.hash(password, null, null, function(err, hash){
+					users.save({username:username, hash:hash, pending:false}, function(err, res){
+						console.log(res);
+						return done(null, res);
+					});
+				});  
+				
+			}
+		});
+
+	})); // End local-signup Strategy
+
 }

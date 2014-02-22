@@ -21,6 +21,10 @@ exports.logout = function(req, res){
 	res.redirect('/');
 }
 
+exports.adminsetup = function(req, res){
+	res.render('login/adminsetup', {flash: req.flash('error'), adminsetup: true});
+}
+
 exports.isAuthenticated = function(req, res, next){
 	if (req.isAuthenticated())
 		return next();

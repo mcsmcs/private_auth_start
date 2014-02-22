@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+	div(id="content")
+		div(id="login-login")
+			h1 Sign Up
+
+			form(id="login-form" action="/login/setup" method="post")
+					label Username
+					br
+					input(id="username" type="text" name="username")
+					br
+					label Password
+					br
+					input(id="password" type="password" name="password")
+					br
+					div(id="lower")
+						input(type="submit" value="Sign Up!")
+
+			div(id="flash")= flash
+
+
